@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Random Number Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px 20px;
+      margin: 0;
+      text-align: center;
+      background-color: #f7f7f7;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      max-width: 400px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input {
+      padding: 10px;
+      width: 100%;
+      max-width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #result {
+      font-size: 22px;
+      margin-top: 15px;
+      color: green;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 15px;
+      }
+
+      input, button {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      #result {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Random Number Generator</h2>
+
+  <div class="container">
+    <input type="number" id="min" placeholder="Enter minimum number" />
+    <input type="number" id="max" placeholder="Enter maximum number" />
+    <button onclick="generateRandom()">Generate</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function generateRandom() {
+      const min = parseInt(document.getElementById('min').value);
+      const max = parseInt(document.getElementById('max').value);
+      const resultDiv = document.getElementById('result');
+
+      if (isNaN(min) || isNaN(max)) {
+        resultDiv.textContent = "Please enter both numbers.";
+        resultDiv.style.color = "red";
+        return;
+      }
+
+      if (min > max) {
+        resultDiv.textContent = "Min should be less than or equal to Max.";
+        resultDiv.style.color = "red";
+        return;
+      }
+
+      const random = Math.floor(Math.random() * (max - min + 1)) + min;
+      resultDiv.textContent = `Random Number: ${random}`;
+      resultDiv.style.color = "green";
+    }
+  </script>
+
+</body>
+</html>
